@@ -5,10 +5,11 @@ const {
 module.exports = (sequelize, DataTypes) => {
     const model = sequelize.define(
         'CustomerInfo', {
-            customer_id: {
+            customerId: {
                 type: DataTypes.STRING(50),
                 primaryKey: true,
-                defaultValue: uuid()
+                defaultValue: uuid(),
+                field : 'customer_id'
             },
             username: {
                 type: DataTypes.STRING(100),
@@ -17,11 +18,13 @@ module.exports = (sequelize, DataTypes) => {
             password: {
                 type: DataTypes.STRING(100)
             },
-            first_name: {
-                type: DataTypes.STRING(20)
+            firstName: {
+                type: DataTypes.STRING(20),
+                field : 'first_name'
             },
-            last_name: {
-                type: DataTypes.STRING(100)
+            lastName: {
+                type: DataTypes.STRING(100),
+                field : 'last_name'
             },
             title: {
                 type: DataTypes.STRING(20)
@@ -32,25 +35,31 @@ module.exports = (sequelize, DataTypes) => {
             mobile: {
                 type: DataTypes.STRING(15)
             },
-            birth_date: {
-                type: DataTypes.DATE
-            },
-            profile_image_path: {
-                type: DataTypes.STRING(250)
-            },
-            is_active: {
-                type: DataTypes.BOOLEAN,
-                defaultValue: true
-            },
-            register_date: {
-                type: DataTypes.DATE
-            },
-            created_at: {
+            birthDate: {
                 type: DataTypes.DATE,
-                defaultValue: new Date()
+                field : 'birth_date'
             },
-            updated_at: {
-                type: DataTypes.DATE
+            profileImagePath: {
+                type: DataTypes.STRING(250),
+                field : 'profile_image_path'
+            },
+            isActive: {
+                type: DataTypes.BOOLEAN,
+                defaultValue: true,
+                field : 'isActive'
+            },
+            registerDate: {
+                type: DataTypes.DATE,
+                field : 'register_date'
+            },
+            createdAt: {
+                type: DataTypes.DATE,
+                defaultValue: new Date(),
+                field : 'created_at'
+            },
+            updatedAt: {
+                type: DataTypes.DATE,
+                field : 'updated_at'
             }
         }, {
             tableName: 'customer_info',
@@ -61,9 +70,12 @@ module.exports = (sequelize, DataTypes) => {
 
     model.associate = models => {
         model.hasMany(models.CustomerAddress, {
-            foreignKey: 'customer_id'
+            foreignKey: 'customer_id',
         });
         model.hasMany(models.Order, {
+            foreignKey: 'customer_id'
+        });
+        model.hasMany(models.ProductInfo, {
             foreignKey: 'customer_id'
         });
     }

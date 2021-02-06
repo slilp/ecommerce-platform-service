@@ -1,14 +1,23 @@
 module.exports = (sequelize, DataTypes) => {
     const model = sequelize.define(
         'OrderCart', {
-            cart_id: {
+            cartId: {
                 type: DataTypes.INTEGER,
                 primaryKey: true,
                 autoIncrement: true,
+                field: 'cart_id'
             },
             quantity: {
                 type: DataTypes.INTEGER
-            }
+            },
+            orderId: {
+                type: DataTypes.STRING(50),
+                field: 'order_id'
+            },
+            skuId: {
+                type: DataTypes.STRING(50),
+                field: 'sku_id'
+            },
         }, {
             tableName: 'order_cart',
             timestamps: false

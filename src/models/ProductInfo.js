@@ -6,10 +6,11 @@ const {
 module.exports = (sequelize, DataTypes) => {
     const model = sequelize.define(
         'ProductInfo', {
-            product_id: {
+            productId: {
                 type: DataTypes.STRING(50),
                 primaryKey: true,
-                defaultValue: uuid()
+                defaultValue: uuid(),
+                field: 'product_id'
             },
             name: {
                 type: DataTypes.STRING(250)
@@ -17,33 +18,50 @@ module.exports = (sequelize, DataTypes) => {
             category: {
                 type: DataTypes.STRING(50)
             },
-            sub_category: {
-                type: DataTypes.STRING(50)
+            subCategory: {
+                type: DataTypes.STRING(50),
+                field: 'sub_category'
             },
-            image_path: {
-                type: DataTypes.STRING(250)
+            imagePath: {
+                type: DataTypes.STRING(250),
+                field: 'image_path'
             },
-            promotion_code_1: {
-                type: DataTypes.STRING(50)
+            promotionCode1: {
+                type: DataTypes.STRING(50),
+                field: 'promotion_code_1'
             },
-            promotion_code_2: {
-                type: DataTypes.STRING(50)
+            promotionCode2: {
+                type: DataTypes.STRING(50),
+                field: 'promotion_code_2'
             },
-            min_price: {
-                type: DataTypes.DECIMAL(14, 4)
+            minPrice: {
+                type: DataTypes.DECIMAL(14, 4),
+                field: 'min_price'
             },
-            max_price: {
-                type: DataTypes.DECIMAL(14, 4)
+            maxPrice: {
+                type: DataTypes.DECIMAL(14, 4),
+                field: 'max_price'
             },
-            is_active: {
-                type: DataTypes.BOOLEAN
+            isActive: {
+                type: DataTypes.BOOLEAN,
+                field: 'is_active'
             },
-            created_at: {
+            createdAt: {
                 type: DataTypes.DATE,
-                defaultValue: new Date()
+                defaultValue: new Date(),
+                field: 'created_at'
             },
-            updated_at: {
-                type: DataTypes.DATE
+            updatedAt: {
+                type: DataTypes.DATE,
+                field: 'updated_at'
+            },
+            marketplaceId: {
+                type: DataTypes.STRING(50),
+                field: 'marketplace_id'
+            },
+            customerId: {
+                type: DataTypes.STRING(50),
+                field : 'customer_id'
             }
         }, {
             tableName: 'product_info',
@@ -60,7 +78,10 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'marketplace_id',
             onDelete: 'CASCADE'
         });
-
+        model.belongsTo(models.CustomerInfo, {
+            foreignKey: 'customer_id',
+            onDelete: 'CASCADE'
+        });
     }
 
 

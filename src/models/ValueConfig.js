@@ -1,41 +1,3 @@
-// module.exports = (sequelize, DataTypes) => {
-//     const model = sequelize.define(
-//         'ValueConfig', {
-//             id: {
-//                 type: DataTypes.INTEGER,
-//                 primaryKey: true,
-//                 autoIncrement: true,
-//             },
-//             value_type: {
-//                 type: DataTypes.STRING(50)
-//             },
-//             key: {
-//                 type: DataTypes.STRING(250)
-//             },
-//             value: {
-//                 type: DataTypes.STRING(250)
-//             },
-//             is_active: {
-//                 type: DataTypes.BOOLEAN
-//             },
-//             created_at: {
-//                 type: DataTypes.DATE,
-//                 defaultValue: new Date()
-//             },
-//             updated_at: {
-//                 type: DataTypes.DATE
-//             }
-//         },{
-//             tableName:'value_config',
-//             timestamps: false
-//         }
-
-//     )
-
-//     return model;
-// }
-
-
 module.exports = (sequelize, DataTypes) => {
     const model = sequelize.define(
         'ValueConfig', {
@@ -44,24 +6,35 @@ module.exports = (sequelize, DataTypes) => {
                 primaryKey: true,
                 autoIncrement: true,
             },
-            province: {
-                type: DataTypes.STRING(50)
+            valueType: {
+                type: DataTypes.STRING(50),
+                field: 'value_type'
             },
-            district: {
-                type: DataTypes.STRING(50)
+            key: {
+                type: DataTypes.STRING(250)
             },
-            sub_district: {
-                type: DataTypes.STRING(50)
+            value: {
+                type: DataTypes.STRING(250)
             },
-            zip_code: {
-                type: DataTypes.STRING(50)
+            isActive: {
+                type: DataTypes.BOOLEAN,
+                field: 'is_active'
+            },
+            createdAt: {
+                type: DataTypes.DATE,
+                defaultValue: new Date(),
+                field: 'created_at'
+            },
+            updatedAt: {
+                type: DataTypes.DATE,
+                field: 'updated_at'
             }
-        }, {
-            tableName: 'value_config',
+        },{
+            tableName:'value_config',
             timestamps: false
         }
+
     )
-    
 
     return model;
 }

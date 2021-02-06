@@ -6,30 +6,37 @@ module.exports = (sequelize, DataTypes) => {
                 autoIncrement: true,
                 primaryKey: true
             },
-            ads_type: {
-                type: DataTypes.STRING(50)
+            adsType: {
+                type: DataTypes.STRING(50),
+                field: 'ads_type'
             },
-            ads_name: {
-                type: DataTypes.STRING(100)
+            adsName: {
+                type: DataTypes.STRING(100),
+                field: 'ads_name'
             },
             priority: {
                 type: DataTypes.INTEGER,
                 defaultValue: 0
             },
-            image_url: {
-                type: DataTypes.STRING(250)
+            imageUrl: {
+                type: DataTypes.STRING(250),
+                field: 'image_url'
             },
-            click_url: {
-                type: DataTypes.STRING(250)
+            clickUrl: {
+                type: DataTypes.STRING(250),
+                field: 'click_url'
             },
-            start_date: {
-                type: DataTypes.DATE
+            startDate: {
+                type: DataTypes.DATE,
+                field: 'start_date'
             },
-            expired_date: {
-                type: DataTypes.DATE
+            expiredDate: {
+                type: DataTypes.DATE,
+                field: 'expired_date'
             },
             is_active: {
-                type: DataTypes.BOOLEAN
+                type: DataTypes.BOOLEAN,
+                field: 'isActive'
             }
         }, {
             tableName: 'advertisement'

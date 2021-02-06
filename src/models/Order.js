@@ -1,21 +1,27 @@
 module.exports = (sequelize, DataTypes) => {
     const model = sequelize.define(
         'Order', {
-            order_id: {
+            orderId: {
                 type: DataTypes.STRING(50),
                 primaryKey: true,
+                field: 'order_id'
             },
-            order_date: {
-                type: DataTypes.DATE
+            orderDate: {
+                type: DataTypes.DATE,
+                field: 'order_date'
             },
             note: {
                 type: DataTypes.STRING(200)
             },
-            order_status: {
+            orderStatus: {
                 type: DataTypes.STRING(50),
-                defaultValue: "ordering"
+                defaultValue: "ordering",
+                field: 'order_status'
+            },
+            customerId: {
+                type: DataTypes.STRING(50),
+                field : 'customer_id'
             }
-
         }, {
             tableName: 'order',
             timestamps: false

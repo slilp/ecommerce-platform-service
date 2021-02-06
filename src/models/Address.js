@@ -12,11 +12,13 @@ module.exports = (sequelize, DataTypes) => {
             district: {
                 type: DataTypes.STRING(50)
             },
-            sub_district: {
-                type: DataTypes.STRING(50)
+            subDistrict: {
+                type: DataTypes.STRING(50),
+                field : 'sub_district'
             },
-            zip_code: {
-                type: DataTypes.STRING(50)
+            zipCode: {
+                type: DataTypes.STRING(50),
+                field : 'zip_code'
             }
         }, {
             tableName: 'address',

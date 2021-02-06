@@ -6,22 +6,30 @@ const {
 module.exports = (sequelize, DataTypes) => {
     const model = sequelize.define(
         'ProductSkuInfo', {
-            sku_id: {
+            skuId: {
                 type: DataTypes.STRING(50),
                 primaryKey: true,
-                defaultValue: uuid()
+                defaultValue: uuid(),
+                field : 'sku_id'
             },
-            selector_key: {
-                type: DataTypes.STRING(50)
+            selectorKey: {
+                type: DataTypes.STRING(50),
+                field : 'selector_key'
             },
-            selector_value: {
-                type: DataTypes.STRING(50)
+            selectorValue: {
+                type: DataTypes.STRING(50),
+                field : 'selector_value'
             },
             price: {
                 type: DataTypes.DECIMAL(14, 4)
             },
-            is_active: {
-                type: DataTypes.BOOLEAN
+            isActive: {
+                type: DataTypes.BOOLEAN,
+                field : 'is_active'
+            },
+            productId: {
+                type: DataTypes.STRING(50),
+                field: 'product_id'
             }
         }, {
             tableName: 'product_sku_info',

@@ -4,7 +4,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const helmet = require('helmet');
 const db = require('./models');
-// const routes = require('./routes');
+const routes = require('./routes');
 // const { route } = require('./routes');
 
 dotenv.config();
@@ -19,7 +19,7 @@ app.get('/handcheck',(req,res)=>{
     res.json({status:true});
 });
 
-// app.use('/api',routes);
+app.use('/api',routes);
 
 app.use((req,res)=>{
     res.status(404).send('ECOMMERCE-PLATFORM-API');

@@ -7,10 +7,11 @@ const {
 module.exports = (sequelize, DataTypes) => {
     const model = sequelize.define(
         'MarketplaceInfo', {
-            marketplace_id: {
+            marketplaceId: {
                 type: DataTypes.STRING(50),
                 primaryKey: true,
-                defaultValue: uuid()
+                defaultValue: uuid(),
+                field: 'marketplace_id'
             },
             name: {
                 type: DataTypes.STRING(250)
@@ -30,25 +31,30 @@ module.exports = (sequelize, DataTypes) => {
             longtitude: {
                 type: DataTypes.STRING(25)
             },
-            profile_image_path: {
-                type: DataTypes.STRING(250)
+            profileImagePath: {
+                type: DataTypes.STRING(250),
+                field:'profile_image_path'
             },
-            background_image_path: {
-                type: DataTypes.STRING(250)
+            backgroundImagePath: {
+                type: DataTypes.STRING(250),
+                field:'background_image_path'
             },
             order: {
                 type: DataTypes.INTEGER,
                 defaultValue: 0
             },
-            is_active: {
-                type: DataTypes.BOOLEAN
+            isActive: {
+                type: DataTypes.BOOLEAN,
+                field:'is_active'
             },
-            created_at: {
+            createdAt: {
                 type: DataTypes.DATE,
-                defaultValue: new Date()
+                defaultValue: new Date(),
+                field:'created_at'
             },
-            updated_at: {
-                type: DataTypes.DATE
+            updatedAt: {
+                type: DataTypes.DATE,
+                field:'updated_at:'
             }
         }, {
             tableName: 'marketplace_info',

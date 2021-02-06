@@ -6,17 +6,25 @@ module.exports = (sequelize, DataTypes) => {
                 primaryKey: true,
                 autoIncrement: true,
             },
-            address_name: {
-                type: DataTypes.STRING(50)
+            addressName: {
+                type: DataTypes.STRING(50),
+                field : 'address_name'
             },
-            address_ref: {
-                type: DataTypes.INTEGER
+            addressInfo: {
+                type: DataTypes.STRING(200),
+                field : 'address_info'
             },
-            address_info: {
-                type: DataTypes.STRING(200)
+            isDefault: {
+                type: DataTypes.BOOLEAN,
+                field : 'is_default'
             },
-            is_default: {
-                type: DataTypes.BOOLEAN
+            customerId: {
+                type: DataTypes.STRING(50),
+                field : 'customer_id'
+            },
+            addressId: {
+                type: DataTypes.STRING(50),
+                field : 'address_id'
             }
         }, {
             tableName: 'customer_address',
