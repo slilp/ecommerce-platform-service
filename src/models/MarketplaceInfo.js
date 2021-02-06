@@ -1,20 +1,14 @@
-const {
-    v4: uuid
-} = require('uuid');
-
-
-
 module.exports = (sequelize, DataTypes) => {
     const model = sequelize.define(
         'MarketplaceInfo', {
             marketplaceId: {
                 type: DataTypes.STRING(50),
                 primaryKey: true,
-                defaultValue: uuid(),
                 field: 'marketplace_id'
             },
-            name: {
-                type: DataTypes.STRING(250)
+            marketName: {
+                type: DataTypes.STRING(250),
+                field:'market_name'
             },
             description: {
                 type: DataTypes.STRING()
@@ -45,7 +39,8 @@ module.exports = (sequelize, DataTypes) => {
             },
             isActive: {
                 type: DataTypes.BOOLEAN,
-                field:'is_active'
+                field:'is_active',
+                defaultValue: true
             },
             createdAt: {
                 type: DataTypes.DATE,
