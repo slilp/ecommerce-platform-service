@@ -14,9 +14,9 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.STRING(50),
                 field: 'order_id'
             },
-            skuId: {
+            productId: {
                 type: DataTypes.STRING(50),
-                field: 'sku_id'
+                field: 'product_id'
             },
         }, {
             tableName: 'order_cart',
@@ -30,8 +30,8 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'order_id',
             onDelete: 'CASCADE'
         });
-        model.belongsTo(models.ProductSkuInfo, {
-            foreignKey:'sku_id',
+        model.belongsTo(models.ProductInfo, {
+            foreignKey:'product_id',
             onDelete: 'CASCADE'
         });
     }

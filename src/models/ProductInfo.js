@@ -1,7 +1,3 @@
-const {
-    v4: uuid
-} = require('uuid');
-
 
 module.exports = (sequelize, DataTypes) => {
     const model = sequelize.define(
@@ -9,11 +5,11 @@ module.exports = (sequelize, DataTypes) => {
             productId: {
                 type: DataTypes.STRING(50),
                 primaryKey: true,
-                defaultValue: uuid(),
                 field: 'product_id'
             },
-            name: {
-                type: DataTypes.STRING(250)
+            productName: {
+                type: DataTypes.STRING(250),
+                field: 'product_name'
             },
             category: {
                 type: DataTypes.STRING(50)
@@ -23,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
                 field: 'sub_category'
             },
             imagePath: {
-                type: DataTypes.STRING(250),
+                type: DataTypes.STRING(),
                 field: 'image_path'
             },
             promotionCode1: {
@@ -34,16 +30,17 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.STRING(50),
                 field: 'promotion_code_2'
             },
-            minPrice: {
+            displayPrice: {
                 type: DataTypes.DECIMAL(14, 4),
                 field: 'min_price'
             },
-            maxPrice: {
+            netPrice: {
                 type: DataTypes.DECIMAL(14, 4),
-                field: 'max_price'
+                field: 'net_price'
             },
             isActive: {
                 type: DataTypes.BOOLEAN,
+                defaultValue : true,
                 field: 'is_active'
             },
             createdAt: {
@@ -61,7 +58,7 @@ module.exports = (sequelize, DataTypes) => {
             },
             customerId: {
                 type: DataTypes.STRING(50),
-                field : 'customer_id'
+                field: 'customer_id'
             }
         }, {
             tableName: 'product_info',
@@ -71,7 +68,10 @@ module.exports = (sequelize, DataTypes) => {
     )
 
     model.associate = models => {
-        model.hasMany(models.ProductSkuInfo, {
+        model.hasMany(models.OrderCart, {
+            foreignKey: 'product_id'
+        });
+        model.hasMany(models.ProductImage, {
             foreignKey: 'product_id'
         });
         model.belongsTo(models.MarketplaceInfo, {
@@ -79,8 +79,7 @@ module.exports = (sequelize, DataTypes) => {
             onDelete: 'CASCADE'
         });
         model.belongsTo(models.CustomerInfo, {
-            foreignKey: 'customer_id',
-            onDelete: 'CASCADE'
+            foreignKey: 'customer_id'
         });
     }
 

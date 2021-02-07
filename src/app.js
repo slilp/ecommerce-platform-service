@@ -27,7 +27,7 @@ app.use((req,res)=>{
 
 
 
-db.sequelize.sync({force:false ,  timestamps: false, }).then(()=>{
+db.sequelize.sync({force: false ,  timestamps: false, }).then(()=>{
     app.listen(port,()=>{
         console.log(`app is running on port ${port}`);
     });
