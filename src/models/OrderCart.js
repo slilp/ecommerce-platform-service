@@ -31,6 +31,7 @@ module.exports = (sequelize, DataTypes) => {
             onDelete: 'CASCADE'
         });
         model.belongsTo(models.ProductInfo, {
+            as:'productInfo',
             foreignKey:'product_id',
             onDelete: 'CASCADE'
         });
