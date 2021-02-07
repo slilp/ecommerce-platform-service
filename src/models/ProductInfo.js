@@ -76,10 +76,12 @@ module.exports = (sequelize, DataTypes) => {
         });
         model.belongsTo(models.MarketplaceInfo, {
             foreignKey: 'marketplace_id',
-            onDelete: 'CASCADE'
+            onDelete: 'CASCADE',
+            constraints:false 
         });
         model.belongsTo(models.CustomerInfo, {
-            foreignKey: 'customer_id'
+            foreignKey: 'customer_id',
+            constraints:false 
         });
     }
 

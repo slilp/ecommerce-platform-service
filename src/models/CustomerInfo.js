@@ -27,6 +27,12 @@ module.exports = (sequelize, DataTypes) => {
             email: {
                 type: DataTypes.STRING(100)
             },
+            facebook: {
+                type: DataTypes.STRING(250)
+            },
+            line: {
+                type: DataTypes.STRING(25)
+            },
             mobile: {
                 type: DataTypes.STRING(15)
             },
