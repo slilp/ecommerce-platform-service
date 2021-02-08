@@ -5,12 +5,15 @@ const dotenv = require('dotenv');
 const helmet = require('helmet');
 const db = require('./models');
 const routes = require('./routes');
+const passport = require('./passport');
+
 // const { route } = require('./routes');
 
 dotenv.config();
 app.use(express.json());
 app.use(cors());
 app.use(helmet());
+app.use(passport.initialize());
 
 const port = process.env.PORT || 3000;
 
@@ -18,6 +21,7 @@ const port = process.env.PORT || 3000;
 app.get('/handcheck',(req,res)=>{
     res.json({status:true});
 });
+
 
 app.use('/api',routes);
 
