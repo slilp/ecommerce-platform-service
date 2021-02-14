@@ -30,7 +30,7 @@ async function create(req, res) {
             order: value.order
         }));
 
-        const insert = await productInfoService.insertProduct(req.body, req.params.market, req.params.customer);
+        const insert = await productInfoService.insertProduct(req.body, req.params.market, req.user);
 
         return res.json({
             status: true,
@@ -52,7 +52,7 @@ async function create(req, res) {
 async function search(req, res) {
     try {
 
-        const search = await productInfoService.searchProduct(req.params.market, req.params.product, req.params.index, req.params.size);
+        const search = await productInfoService.searchProduct(req.params.market, req.query.s, req.params.index, req.params.size);
 
         return res.json({
             status: true,
@@ -60,7 +60,7 @@ async function search(req, res) {
             message: 'success',
             data: {
                 totalRecord: search.count,
-                data: search.rows
+                listData: search.rows
             }
         });
 

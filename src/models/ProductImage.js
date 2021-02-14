@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
                 field : 'image_id'
             },
             imagePath: {
-                type: DataTypes.STRING(500),
+                type: DataTypes.STRING(1500),
                 field : 'image_path'
             },
             order: {

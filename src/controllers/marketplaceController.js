@@ -74,7 +74,7 @@ async function update(req, res) {
 async function search(req, res) {
     try {
 
-        const search = await marketplaceService.searchMarketplace(req.params.name, req.params.index, req.params.size);
+        const search = await marketplaceService.searchMarketplace(req.query.name, req.params.index, req.params.size);
         
         return res.json({
             status: true,
@@ -82,8 +82,30 @@ async function search(req, res) {
             message: 'success',
             data: {
                 totalRecord : search.count,
-                data : search.rows 
+                listData : search.rows 
             }
+        });
+
+    } catch (error) {
+        return res.status(500).json({
+            status: false,
+            statusCode: 'ECOM-500',
+            message: error.message
+        });
+    }
+}
+
+
+async function info(req, res) {
+    try {
+
+        const info = await marketplaceService.searchById(req.params.id);
+        
+        return res.json({
+            status: true,
+            statusCode: 'ECOM-200',
+            message: 'success',
+            data: info
         });
 
     } catch (error) {
@@ -100,5 +122,6 @@ module.exports = {
     marketplaceValidation,
     create,
     update,
-    search
+    search,
+    info
 }

@@ -56,13 +56,13 @@ async function searchProduct(market, search, index, size) {
         offset: size * index,
         limit: size * 1,
         attributes: [
-            'productId',
-            'productName',
-            'imagePath',
-            'promotionCode1',
-            'promotionCode2',
-            'displayPrice',
-            'netPrice'
+            "productId",
+            "productName",
+            "imagePath",
+            "promotionCode1",
+            "promotionCode2",
+            "displayPrice",
+            "netPrice"
         ]
     });
 
@@ -82,13 +82,13 @@ async function searchAllProduct(market, index, size) {
         offset: size * index,
         limit: size * 1,
         attributes: [
-            'productId',
-            'productName',
-            'imagePath',
-            'promotionCode1',
-            'promotionCode2',
-            'displayPrice',
-            'netPrice'
+            "productId",
+            "productName",
+            "imagePath",
+            "promotionCode1",
+            "promotionCode2",
+            "displayPrice",
+            "netPrice"
         ]
     });
 
@@ -100,30 +100,38 @@ async function getProductInfo(id) {
 
     const query = await db.ProductInfo.findByPk(id, {
         attributes: [
-            'productId',
-            'productName',
-            'category',
-            'subCategory',
-            'displayPrice',
-            'netPrice',
-            'customerId'
+            "productId",
+            "productName",
+            "productDesc",
+            "category",
+            "imagePath",
+            "subCategory",
+            "displayPrice",
+            "netPrice",
+            "customerId",
+            "selectedKey",
+            "selectedValue"
         ],
         include: [{
                 model: db.ProductImage,
+                as: "productImage",
                 attributes: [
-                    'imageId',
-                    'imagePath',
-                    'order'
+                    "imageId",
+                    "imagePath",
+                    "order"
                 ]
             },
             {
                 model: db.CustomerInfo,
+                as:"sellerInfo",
                 attributes: [
-                    'firstName',
-                    'lastName',
-                    'email',
-                    'mobile',
-                    'profileImagePath'
+                    "firstName",
+                    "lastName",
+                    "email",
+                    "mobile",
+                    "line",
+                    "facebook",
+                    "profileImagePath"
                 ]
             }
         ]

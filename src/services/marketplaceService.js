@@ -39,11 +39,21 @@ async function searchMarketplace(searchRequest,index,size) {
             ['order', 'DESC']
         ],
         offset: size*index,
-        limit: size*1
+        limit: size*1,
+        attributes: [
+            'marketplaceId',
+            'marketName',
+            'preDescription',
+            'latitude',
+            'longtitude',
+            'profileImagePath',
+            'order'
+        ]
     });
 
     return select;
 }
+
 
 module.exports = {
     insertMarketplace,

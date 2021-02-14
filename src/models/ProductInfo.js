@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.STRING(250),
                 field: 'product_name'
             },
+            productDesc: {
+                type: DataTypes.STRING(5000),
+                field: 'product_desc'
+            },
             category: {
                 type: DataTypes.STRING(50)
             },
@@ -19,8 +23,16 @@ module.exports = (sequelize, DataTypes) => {
                 field: 'sub_category'
             },
             imagePath: {
-                type: DataTypes.STRING(),
+                type: DataTypes.STRING(1500),
                 field: 'image_path'
+            },
+            selectedKey: {
+                type: DataTypes.STRING(50),
+                field: 'selected_key'
+            },
+            selectedValue: {
+                type: DataTypes.STRING(250),
+                field: 'selected_value'
             },
             promotionCode1: {
                 type: DataTypes.STRING(50),
@@ -72,6 +84,7 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'product_id'
         });
         model.hasMany(models.ProductImage, {
+            as : 'productImage',
             foreignKey: 'product_id'
         });
         model.belongsTo(models.MarketplaceInfo, {
@@ -81,6 +94,7 @@ module.exports = (sequelize, DataTypes) => {
         });
         model.belongsTo(models.CustomerInfo, {
             foreignKey: 'customer_id',
+            as:"sellerInfo",
             constraints:false 
         });
     }

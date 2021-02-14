@@ -3,11 +3,11 @@ const router = express.Router();
 const productInfoController = require('../controllers/productInfoController');
 const {jwtAuthentication} = require('../passport/middleware');
 
-router.post('/create/:market/:customer',
+router.post('/create/:market',
 [jwtAuthentication,productInfoController.productInfoValidation('create')],
 productInfoController.create);
 
-router.get('/search/:market/:index/:size/:product',
+router.get('/search/:market/:index/:size',
 productInfoController.productInfoValidation('search'),
 productInfoController.search);
 

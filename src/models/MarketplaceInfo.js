@@ -10,8 +10,11 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.STRING(250),
                 field:'market_name'
             },
+            preDescription: {
+                type: DataTypes.STRING(200)
+            },
             description: {
-                type: DataTypes.STRING()
+                type: DataTypes.STRING(2000)
             },
             mobile: {
                 type: DataTypes.STRING(15)
@@ -26,11 +29,11 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.STRING(25)
             },
             profileImagePath: {
-                type: DataTypes.STRING(250),
+                type: DataTypes.STRING(1000),
                 field:'profile_image_path'
             },
             backgroundImagePath: {
-                type: DataTypes.STRING(250),
+                type: DataTypes.STRING(1000),
                 field:'background_image_path'
             },
             order: {
