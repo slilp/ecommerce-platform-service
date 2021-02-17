@@ -39,6 +39,7 @@ module.exports = (sequelize, DataTypes) => {
             onDelete: 'CASCADE'
         });
         model.belongsTo(models.Address, {
+            as : 'address',
             foreignKey: 'address_id',
             onDelete: 'CASCADE'
         });
