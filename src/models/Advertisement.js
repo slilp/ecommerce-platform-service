@@ -19,11 +19,11 @@ module.exports = (sequelize, DataTypes) => {
                 defaultValue: 0
             },
             imageUrl: {
-                type: DataTypes.STRING(250),
+                type: DataTypes.STRING(1500),
                 field: 'image_url'
             },
             clickUrl: {
-                type: DataTypes.STRING(250),
+                type: DataTypes.STRING(500),
                 field: 'click_url'
             },
             startDate: {

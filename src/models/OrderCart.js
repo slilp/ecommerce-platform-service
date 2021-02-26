@@ -10,6 +10,9 @@ module.exports = (sequelize, DataTypes) => {
             quantity: {
                 type: DataTypes.INTEGER
             },
+            price: {
+                type: DataTypes.DECIMAL(14, 4),
+            },
             orderId: {
                 type: DataTypes.STRING(50),
                 field: 'order_id'
@@ -18,6 +21,11 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.STRING(50),
                 field: 'product_id'
             },
+            orderStatus: {
+                type: DataTypes.STRING(50),
+                defaultValue: "waiting",
+                field: 'order_status'
+            }
         }, {
             tableName: 'order_cart',
             timestamps: false

@@ -95,8 +95,38 @@ async function login(req, res) {
 
 }
 
+async function info(req, res) {
+    try {
+
+        const user = await customerService.getUserById(req.user);
+        if(!user){
+            return res.status(400).json({
+                status: false,
+                statusCode: 'ECOM-404',
+                message: 'not found'
+            });
+        }
+
+        return res.json({
+            status: true,
+            statusCode: 'ECOM-200',
+            message: 'success',
+            data: user
+        });
+
+    } catch (error) {
+        return res.status(500).json({
+            status: false,
+            statusCode: 'ECOM-500',
+            message: error.message
+        });
+    }
+
+}
+
 module.exports = {
     customerValidation,
     register,
-    login
+    login,
+    info
 }

@@ -50,7 +50,7 @@ async function search(req, res) {
             message: 'success',
             data: {
                 totalRecord: search.count,
-                data: search.rows
+                listOrder: search.rows
             }
         });
 

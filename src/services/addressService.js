@@ -20,12 +20,9 @@ async function getCustomerAddress(user) {
         attributes: [
             'id',
             'addressInfo',
+            'zipCode',
             'isDefault'
-        ],
-        include:{
-            as : 'address',
-            model: db.Address
-        }
+        ]
     });
 
     return result;

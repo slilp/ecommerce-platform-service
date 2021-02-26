@@ -11,8 +11,12 @@ module.exports = (sequelize, DataTypes) => {
                 field : 'address_name'
             },
             addressInfo: {
-                type: DataTypes.STRING(200),
+                type: DataTypes.STRING(500),
                 field : 'address_info'
+            },
+            zipCode: {
+                type: DataTypes.STRING(10),
+                field : 'zipCode'
             },
             isDefault: {
                 type: DataTypes.BOOLEAN,
@@ -21,11 +25,12 @@ module.exports = (sequelize, DataTypes) => {
             customerId: {
                 type: DataTypes.STRING(50),
                 field : 'customer_id'
-            },
-            addressId: {
-                type: DataTypes.STRING(50),
-                field : 'address_id'
             }
+            // ,
+            // addressId: {
+            //     type: DataTypes.STRING(50),
+            //     field : 'address_id'
+            // }
         }, {
             tableName: 'customer_address',
             timestamps: false
@@ -38,11 +43,11 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'customer_id',
             onDelete: 'CASCADE'
         });
-        model.belongsTo(models.Address, {
-            as : 'address',
-            foreignKey: 'address_id',
-            onDelete: 'CASCADE'
-        });
+        // model.belongsTo(models.Address, {
+        //     as : 'address',
+        //     foreignKey: 'address_id',
+        //     onDelete: 'CASCADE'
+        // });
     }
 
     return model;

@@ -52,7 +52,8 @@ async function searchCustomerOrder(user,status,index,size) {
             as : 'orderCart',
             attributes: [
                 'quantity',
-                'productId'
+                'productId',
+                'price'
             ],
             include:{
                 model: db.ProductInfo,
