@@ -4,6 +4,7 @@ const tokenGenerator = require('../utils/tokenGenerator');
 const {
     v4: uuid
 } = require('uuid');
+const url = require('url');    
 
 function customerValidation(action) {
     switch (action) {
@@ -20,14 +21,14 @@ async function register(req, res) {
     try {
         const user = await customerService.getUserByUsername(req.body.username);
 
-        if(user){
+        if (user) {
             return res.status(409).json({
                 status: false,
                 statusCode: 'ECOM-409',
                 message: 'duplicate data'
             });
         }
-    
+
         const passHash = await bcryptPassword.hashPassword(req.body.password);
 
         req.body.password = passHash;
@@ -56,7 +57,7 @@ async function login(req, res) {
     try {
 
         const user = await customerService.getUserByUsername(req.body.username);
-        if(!user){
+        if (!user) {
             return res.status(400).json({
                 status: false,
                 statusCode: 'ECOM-401',
@@ -81,7 +82,7 @@ async function login(req, res) {
             statusCode: 'ECOM-200',
             message: 'success',
             data: {
-                accessToken : token
+                accessToken: token
             }
         });
 
@@ -95,11 +96,70 @@ async function login(req, res) {
 
 }
 
+async function facebook(req, res) {
+
+    const checkUser = await customerService.getUserByUsername(req.user.id);
+
+    //already have facebook user
+    if (checkUser) {
+
+        const token = tokenGenerator.tokenGenerator(checkUser);
+
+        res.redirect(url.format({
+            pathname: "http://localhost:3000/login",
+            query: {
+                "t": token
+            }
+        }));
+
+    } else {
+
+        //register new user
+
+        const createUser = {
+            customerId: uuid(),
+            username: req.user.id,
+            password: null,
+            firstName: req.user.displayName,
+            lastName: null,
+            email: null,
+            mobile: null,
+            facebook: null,
+            profileImagePath: null,
+            line: null,
+            registerDate: new Date()
+        };
+
+        const insert = await customerService.insertCustomer(createUser);
+
+        if (insert) {
+
+            const token = tokenGenerator.tokenGenerator(insert);
+
+            res.redirect(url.format({
+                pathname: "http://localhost:3000/login",
+                query: {
+                    "t": token
+                }
+            }));
+        } else {
+
+            res.redirect(url.format({
+                pathname: "http://localhost:3000/login",
+                query: {
+                    "error": 'error facebook'
+                }
+            }));
+        }
+    }
+}
+
+
 async function info(req, res) {
     try {
 
         const user = await customerService.getUserById(req.user);
-        if(!user){
+        if (!user) {
             return res.status(400).json({
                 status: false,
                 statusCode: 'ECOM-404',
@@ -128,5 +188,6 @@ module.exports = {
     customerValidation,
     register,
     login,
-    info
+    info,
+    facebook
 }

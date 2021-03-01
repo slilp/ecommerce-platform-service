@@ -6,6 +6,7 @@ const helmet = require('helmet');
 const db = require('./models');
 const routes = require('./routes');
 const passport = require('./passport');
+const session = require('express-session');
 
 // const { route } = require('./routes');
 
@@ -13,7 +14,14 @@ dotenv.config();
 app.use(express.json());
 app.use(cors());
 app.use(helmet());
+app.use(session({
+    resave: false,
+    saveUninitialized: true,
+    secret: 'SECRET'
+}));
+
 app.use(passport.initialize());
+app.use(passport.session());
 
 const port = process.env.PORT || 3000;
 
