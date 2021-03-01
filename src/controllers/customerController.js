@@ -82,6 +82,11 @@ async function login(req, res) {
             statusCode: 'ECOM-200',
             message: 'success',
             data: {
+                customerInfo:{
+                    firstName : user.firstName,
+                    lastName: user.lastName,
+                    profile: user.profileImagePath
+                },
                 accessToken: token
             }
         });
