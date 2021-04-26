@@ -1,0 +1,36 @@
+version: '3.4'
+
+services:
+  ecomservice:
+    image: ecomservice
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      - NODE_ENV=production
+      - ACCESS_KEY="ECOMCAMP"
+      - TOKEN_EXPIRE=3600
+      - PORT=3303
+    ports:
+      - 3003:3303
+    networks:
+      - pfarnet
+  mysqldb:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+        - MYSQL_ROOT_PASSWORD=Winteriscoming7412369850
+        - MYSQL_DATABASE=pfarthai_db
+    ports:
+        - 3304:3306
+    volumes:
+        - my-datavolume:/var/lib/mysql
+    networks:
+          - pfarnet
+networks:
+    pfarnet:
+        driver: bridge
+volumes:
+    my-datavolume:
+      

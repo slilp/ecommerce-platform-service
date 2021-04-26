@@ -17,7 +17,11 @@
     "username": "root",
     "password": "Winteriscoming7412369850",
     "database": "ECOMMERCE_MARKET",
-    "host": "localhost",
-    "dialect": "mysql"
+    "host": "mysqldb",
+    "port":"3306",
+    "dialect": "mysql",
+    "define": {
+      "timestamps": false
+    }
   }
 }
